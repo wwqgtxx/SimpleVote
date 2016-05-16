@@ -49,5 +49,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Struts 2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.0.33" level="application_server_libraries" />
+    <orderEntry type="library" name="log4j-2.5" level="project" />
   </component>
 </module>
