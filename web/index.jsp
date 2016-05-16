@@ -11,6 +11,8 @@
     <title></title>
   </head>
   <body>
-
+  <%
+    out.println("from java");
+  %>
   </body>
 </html>
