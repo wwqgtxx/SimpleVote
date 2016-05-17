@@ -5,8 +5,9 @@
 var lastTimestamp;
 function updateTableArea(json){
     var typeData = json.voteList;
+    var tableTitle = $("#tableTitle").html();
     $("#tableArea").empty();
-    $("#tableArea").append("<tr class='title'> <th class='name'>名称</th><th class='team1'>队伍1</th><th class='team2'>队伍2</th><th class='condition'>比赛状态</th><th class='vote'>比分</th></tr>");
+    $("#tableArea").append(tableTitle);
     $.each(typeData, function(i, value) {
         var tbBody = "";
         tbBody += "<tr class='" + value.name + "'>";
