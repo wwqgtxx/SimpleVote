@@ -3,9 +3,10 @@
  */
 //获取发布模块类型
 var lastTimestamp;
+var tableTitle;
+var hasUpdateFailAlert = true;
 function updateTableArea(json){
     var typeData = json.voteList;
-    var tableTitle = $("#tableTitle").html();
     $("#tableArea").empty();
     $("#tableArea").append(tableTitle);
     $.each(typeData, function(i, value) {
@@ -31,15 +32,27 @@ function getModuleInfo() {
             }
             updateTableArea(json);
             lastTimestamp = json.lastTimestamp;
+            hasUpdateFailAlert= true;
         },
         error: function(json) {
-            alert("加载失败");
+            if (hasUpdateFailAlert==true) {
+                $.alert({
+                    title: '错误',
+                    content: '连接服务器出错',
+                    confirm: function () {
+                        hasUpdateFailAlert= true;
+                        return;
+                    }
+                });
+                hasUpdateFailAlert= false;
+            }
         }
     });
 }
 
 $(document).ready(function(){
     $("#admin").hide();
+    tableTitle = $("#tableTitle").html();
     var args = new Object();
     args = GetUrlParms();
     if(args["admin"]!=undefined) {
@@ -49,7 +62,7 @@ $(document).ready(function(){
         }
     }
     getModuleInfo()
-    setInterval(getModuleInfo, 10000);
+    setInterval(getModuleInfo, 1000);
 });
 
 $("#sub").click(function(){
@@ -60,7 +73,14 @@ $("#sub").click(function(){
         data:$("#adminform").serialize(),
         async: false,
         error: function(request) {
-            alert("Connection error");
+            $.alert({
+                title: '错误',
+                content: '提交失败',
+                confirm: function(){
+
+                }
+            });
+
         },
         success: function(json) {
             updateTableArea(json);
@@ -84,7 +104,13 @@ $("#btnclean").click(function(){
                 data: {},
                 async: false,
                 error: function(request) {
-                    alert("Connection error");
+                    $.alert({
+                        title: '错误',
+                        content: '清空失败',
+                        confirm: function(){
+                            return;
+                        }
+                    });
                 },
                 success: function(json) {
                     updateTableArea(json);

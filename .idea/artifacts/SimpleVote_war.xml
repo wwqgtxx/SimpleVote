@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="SimpleVote:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/SimpleVote_war</output-path>
+    <root id="archive" name="SimpleVote_war.war">
+      <element id="artifact" artifact-name="SimpleVote:war exploded" />
+    </root>
+  </artifact>
+</component>
