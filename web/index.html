@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <!-- Bootstrap -->
+  <link href="lib/bootstrap.min.css" rel="stylesheet">
+  <title></title>
+</head>
+<body>
+    <div class="container">
+
+        <div>
+            <h1>简易计分器</h1>
+            <p class="lead">一个为比赛制作的实时计分器</p>
+        </div>
+
+        <div id="admin">
+            <h2>分数修改区域</h2>
+            <form class="form-inline" id="adminform">
+                <div class="form-group">
+                    <label for="name">名称</label>
+                    <input type="text" class="form-control" name="vote.name" id="name" value="A班对B班" placeholder="A班对B班">
+                </div>
+                <div class="form-group">
+                    <label for="team1">队伍1</label>
+                    <input type="text" class="form-control" name="vote.team1" id="team1" value="A班" placeholder="A班">
+                </div>
+                <div class="form-group">
+                    <label for="team2">队伍2</label>
+                    <input type="text" class="form-control" name="vote.team2" id="team2" value="B班" placeholder="B班">
+                </div>
+                <div class="form-group">
+                    <label for="condition">比赛状态</label>
+                    <input type="text" class="form-control" name="vote.condition" id="condition" value="进行中" placeholder="进行中">
+                </div>
+                <div class="form-group">
+                    <label for="vote">比分1</label>
+                    <input type="text" class="form-control" name="vote.vote" id="vote" value="1:1" placeholder="1:1">
+                </div>
+                <button type="submit" class="btn btn-default" id="sub">提交修改</button>
+            </form>
+
+            <button type="button" class="btn btn-danger btn-block" id="btnclean">清空所有数据</button>
+        </div>
+
+        <div>
+            <h2>分数显示区域</h2>
+            <div class="table-responsive">
+                <table class="table" id="tableArea">
+                    <!-- On rows -->
+                    <tr class="title">
+                        <th class="name">名称</th>
+                        <th class="team1">队伍1</th>
+                        <th class="team2">队伍2</th>
+                        <th class="condition">比赛状态</th>
+                        <th class="vote">比分</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+    </div><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="lib/jquery-1.12.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="lib/bootstrap.min.js"></script>
+    <script src="lib/jquery-confirm.js"></script>
+    <link href="lib/jquery-confirm.css" rel="stylesheet">
+    <script src="index.js"></script>
+</body>
+</html>

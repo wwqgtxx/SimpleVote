@@ -1,12 +1,9 @@
 package io.github.wwqgtxx.simplevote;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import com.opensymphony.xwork2.ActionSupport;
-import org.apache.struts2.json.annotations.JSON;
 
 /**
  * Created by Administrator on 2016/5/16.
@@ -41,26 +38,34 @@ public class ParseVoteAction extends ActionSupport{
                 mapVote.setTeam1(vote.getTeam1());
             if (vote.getTeam2() != null)
                 mapVote.setTeam2(vote.getTeam2());
-            mapVote.setIsFinished(vote.isFinished());
+            if (vote.getCondition() != null)
+                mapVote.setCondition(vote.getCondition());
             if (vote.getVote() != null)
                 mapVote.setVote(vote.getVote());
         }
         long timestamp = System.currentTimeMillis();
-        dataMap.put("voteList", voteMap);
+        dataMap.put("voteList", voteMap.values());
         dataMap.put("success", true);
-        dataMap.put("LastTimestamp",DataSave.getLastTimestamp());
+        dataMap.put("lastTimestamp",DataSave.getLastTimestamp());
         dataMap.put("timestamp",timestamp );
         DataSave.setLastTimestamp(timestamp);
         return SUCCESS;
 
     }
     public String doGet() {
-        dataMap.put("voteList", voteMap);
+        dataMap.put("voteList", voteMap.values());
         dataMap.put("success", true);
-        dataMap.put("LastTimestamp",DataSave.getLastTimestamp());
+        dataMap.put("lastTimestamp",DataSave.getLastTimestamp());
         dataMap.put("timestamp", System.currentTimeMillis());
         return SUCCESS;
 
+    }
+
+    public String doClean() {
+        voteMap.clear();
+        long timestamp = System.currentTimeMillis();
+        DataSave.setLastTimestamp(timestamp);
+        return doGet();
     }
 
     public Map<String, Object> getDataMap() {

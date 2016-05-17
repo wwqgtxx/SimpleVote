@@ -7,7 +7,16 @@ public class Vote {
     private String name;
     private String team1;
     private String team2;
-    private boolean isFinished;
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    private String condition;
     private String vote;
 
     public String getName() {
@@ -32,14 +41,6 @@ public class Vote {
 
     public void setTeam2(String team2) {
         this.team2 = team2;
-    }
-
-    public boolean isFinished() {
-        return isFinished;
-    }
-
-    public void setIsFinished(boolean isFinished) {
-        this.isFinished = isFinished;
     }
 
     public String getVote() {

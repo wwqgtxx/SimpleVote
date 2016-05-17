@@ -24,5 +24,10 @@
                 <param name="root">dataMap</param>
             </result>
         </action>
+        <action name="CleanVoteAction" class="io.github.wwqgtxx.simplevote.ParseVoteAction" method="doClean">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
     </package>
 </struts>
