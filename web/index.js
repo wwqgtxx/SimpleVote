@@ -25,7 +25,7 @@ function getModuleInfo() {
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: "/GetVoteAction",
+        url: "GetVoteAction",
         success: function(json) {
             if (json.lastTimestamp == lastTimestamp){
                 return;
