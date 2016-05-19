@@ -46,16 +46,16 @@ public class ParseVoteAction extends ActionSupport{
         long timestamp = System.currentTimeMillis();
         dataMap.put("voteList", voteMap.values());
         dataMap.put("success", true);
-        dataMap.put("lastTimestamp",DataSave.getLastTimestamp());
+        dataMap.put("lastTimestamp",DataSave.getLastVoteTimestamp());
         dataMap.put("timestamp",timestamp );
-        DataSave.setLastTimestamp(timestamp);
+        DataSave.setLastVoteTimestamp(timestamp);
         return SUCCESS;
 
     }
     public String doGet() {
         dataMap.put("voteList", voteMap.values());
         dataMap.put("success", true);
-        dataMap.put("lastTimestamp",DataSave.getLastTimestamp());
+        dataMap.put("lastTimestamp",DataSave.getLastVoteTimestamp());
         dataMap.put("timestamp", System.currentTimeMillis());
         return SUCCESS;
 
@@ -64,7 +64,7 @@ public class ParseVoteAction extends ActionSupport{
     public String doClean() {
         voteMap.clear();
         long timestamp = System.currentTimeMillis();
-        DataSave.setLastTimestamp(timestamp);
+        DataSave.setLastVoteTimestamp(timestamp);
         return doGet();
     }
 

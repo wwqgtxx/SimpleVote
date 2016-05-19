@@ -29,5 +29,20 @@
                 <param name="root">dataMap</param>
             </result>
         </action>
+        <action name="AddDanMuAction" class="io.github.wwqgtxx.simplevote.ParseDanMuAction" method="doAdd">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="GetDanMuAction" class="io.github.wwqgtxx.simplevote.ParseDanMuAction" method="doGet">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="CleanDanMuAction" class="io.github.wwqgtxx.simplevote.ParseDanMuAction" method="doClean">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
     </package>
 </struts>

@@ -1,5 +1,6 @@
 package io.github.wwqgtxx.simplevote;
 
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -12,14 +13,31 @@ public class DataSave {
 
     private static ConcurrentHashMap<String,Vote> voteMap= new ConcurrentHashMap<>();
 
-    public static long getLastTimestamp() {
-        return lastTimestamp;
+    private static long lastVoteTimestamp;
+
+    public static long getLastDanMuTimestamp() {
+        return lastDanMuTimestamp;
     }
 
-    public static void setLastTimestamp(long lastTimestamp) {
-        DataSave.lastTimestamp = lastTimestamp;
+    public static void setLastDanMuTimestamp(long lastDanMuTimestamp) {
+        DataSave.lastDanMuTimestamp = lastDanMuTimestamp;
     }
 
-    private static long lastTimestamp;
+    public static long getLastVoteTimestamp() {
+        return lastVoteTimestamp;
+    }
+
+    public static void setLastVoteTimestamp(long lastVoteTimestamp) {
+        DataSave.lastVoteTimestamp = lastVoteTimestamp;
+    }
+
+    private static long lastDanMuTimestamp;
+
+    public static ArrayList<DanMu> getDanMuList() {
+        return danMuList;
+    }
+
+    public static ArrayList<DanMu> danMuList = new ArrayList<>();
+
 
 }
