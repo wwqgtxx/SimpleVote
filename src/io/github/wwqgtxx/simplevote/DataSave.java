@@ -1,7 +1,7 @@
 package io.github.wwqgtxx.simplevote;
 
-import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by Administrator on 2016/5/16.
@@ -33,11 +33,11 @@ public class DataSave {
 
     private static long lastDanMuTimestamp;
 
-    public static ArrayList<DanMu> getDanMuList() {
+    public static CopyOnWriteArrayList<DanMu> getDanMuList() {
         return danMuList;
     }
 
-    public static ArrayList<DanMu> danMuList = new ArrayList<>();
+    public static CopyOnWriteArrayList<DanMu> danMuList = new CopyOnWriteArrayList<>();
 
 
 }

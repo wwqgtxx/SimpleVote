@@ -4,6 +4,8 @@
 //获取发布模块类型
 var lastVoteTimestamp;
 var lastDanMuTimestamp;
+var updatingDanMu=false;
+var updatingVote=false;
 var tableTitle;
 var hasUpdateFailAlert = true;
 function updateDanMuList(json,needEmpty){
@@ -37,12 +39,16 @@ function updateTableArea(json){
     });
 }
 function getDanMu() {
+    if (updatingDanMu)
+        return;
+    updatingDanMu = true;
     danMulength = $( "li.danMuli" ).get().length;
     $.ajax({
         type: "GET",
         dataType: "json",
         url: "GetDanMuAction",
         success: function(json) {
+            updatingDanMu = false;
             if (json.lastTimestamp == lastDanMuTimestamp){
                 return;
             }
@@ -52,26 +58,31 @@ function getDanMu() {
         },
         error: function(json) {
             console.error(json)
-            if (hasUpdateFailAlert==true) {
+            if (!hasUpdateFailAlert) {
                 $.alert({
                     title: '错误',
                     content: '连接服务器出错',
                     confirm: function () {
-                        hasUpdateFailAlert= true;
+                        hasUpdateFailAlert= false;
+                        updatingDanMu=false;
                         return;
                     }
                 });
-                hasUpdateFailAlert= false;
+                hasUpdateFailAlert= true;
             }
         }
     });
 }
 function getVoteInfo() {
+    if (updatingVote)
+        return;
+    updatingVote = true;
     $.ajax({
         type: "GET",
         dataType: "json",
         url: "GetVoteAction",
         success: function(json) {
+            updatingVote = false;
             if (json.lastTimestamp == lastVoteTimestamp){
                 return;
             }
@@ -80,16 +91,18 @@ function getVoteInfo() {
             hasUpdateFailAlert= true;
         },
         error: function(json) {
-            if (hasUpdateFailAlert==true) {
+            if (!hasUpdateFailAlert) {
                 $.alert({
                     title: '错误',
                     content: '连接服务器出错',
                     confirm: function () {
-                        hasUpdateFailAlert= true;
+                        hasUpdateFailAlert= false;
+                        updatingVote = false;
                         return;
                     }
                 });
-                hasUpdateFailAlert= false;
+                hasUpdateFailAlert= true;
+
             }
         }
     });
@@ -217,7 +230,7 @@ $("#btnclean").click(function(){
                     });
                 },
                 success: function(json) {
-                    updateDanMuList(json);
+                    updateDanMuList(json,true);
                 }
             });
         },

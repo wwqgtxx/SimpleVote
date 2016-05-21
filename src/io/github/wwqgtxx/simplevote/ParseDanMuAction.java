@@ -2,10 +2,9 @@ package io.github.wwqgtxx.simplevote;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by Administrator on 2016/5/16.
@@ -43,7 +42,7 @@ public class ParseDanMuAction extends ActionSupport{
 
     private int end;
     private Map<String,Object> dataMap= new HashMap<>();
-    private static ArrayList<DanMu> danMuList = DataSave.getDanMuList();
+    private static CopyOnWriteArrayList<DanMu> danMuList = DataSave.getDanMuList();
 
 
     public String doAdd() {
