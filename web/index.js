@@ -7,7 +7,7 @@ var lastDanMuTimestamp;
 var updatingDanMu=false;
 var updatingVote=false;
 var tableTitle;
-var hasUpdateFailAlert = true;
+var hasUpdateFailAlert = false;
 function updateDanMuList(json,needEmpty){
     var typeData = json.danMuList;
     if (needEmpty)
@@ -54,21 +54,21 @@ function getDanMu() {
             }
             updateDanMuList(json,true);
             lastDanMuTimestamp = json.lastTimestamp;
-            hasUpdateFailAlert= true;
+            hasUpdateFailAlert= false;
         },
         error: function(json) {
-            console.error(json)
+            updatingDanMu=false;
+            console.error(json);
             if (!hasUpdateFailAlert) {
+                hasUpdateFailAlert= true;
                 $.alert({
                     title: '错误',
                     content: '连接服务器出错',
                     confirm: function () {
                         hasUpdateFailAlert= false;
-                        updatingDanMu=false;
                         return;
                     }
                 });
-                hasUpdateFailAlert= true;
             }
         }
     });
@@ -88,20 +88,21 @@ function getVoteInfo() {
             }
             updateTableArea(json);
             lastVoteTimestamp = json.lastTimestamp;
-            hasUpdateFailAlert= true;
+            hasUpdateFailAlert= false;
         },
         error: function(json) {
+            updatingVote = false;
             if (!hasUpdateFailAlert) {
+                hasUpdateFailAlert= true;
                 $.alert({
                     title: '错误',
                     content: '连接服务器出错',
                     confirm: function () {
                         hasUpdateFailAlert= false;
-                        updatingVote = false;
                         return;
                     }
                 });
-                hasUpdateFailAlert= true;
+
 
             }
         }
@@ -128,9 +129,9 @@ $(document).ready(function(){
         cursorborderradius:"5px",
         autohidemode: false
     });
-    getVoteInfo()
+    getVoteInfo();
     setInterval(getVoteInfo, 1000);
-    getDanMu()
+    getDanMu();
     setInterval(getDanMu, 1000);
 });
 
