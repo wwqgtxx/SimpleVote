@@ -3,6 +3,12 @@
     <output-path>$PROJECT_DIR$/out/artifacts/SimpleVote_war</output-path>
     <root id="archive" name="SimpleVote_war.war">
       <element id="artifact" artifact-name="SimpleVote:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="log4j2" />
+          <element id="library" level="project" name="struts2" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>

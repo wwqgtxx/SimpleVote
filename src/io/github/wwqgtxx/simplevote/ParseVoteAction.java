@@ -43,13 +43,7 @@ public class ParseVoteAction extends ActionSupport{
             if (vote.getVote() != null)
                 mapVote.setVote(vote.getVote());
         }
-        long timestamp = System.currentTimeMillis();
-        dataMap.put("voteList", voteMap.values());
-        dataMap.put("success", true);
-        dataMap.put("lastTimestamp",DataSave.getLastVoteTimestamp());
-        dataMap.put("timestamp",timestamp );
-        DataSave.setLastVoteTimestamp(timestamp);
-        return SUCCESS;
+        return doGet();
 
     }
     public String doGet() {

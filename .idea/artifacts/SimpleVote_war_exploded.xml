@@ -8,8 +8,8 @@
           <element id="module-output" name="SimpleVote" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Struts 2" />
-          <element id="library" level="project" name="log4j-2.5" />
+          <element id="library" level="project" name="log4j2" />
+          <element id="library" level="project" name="struts2" />
         </element>
       </element>
     </root>
